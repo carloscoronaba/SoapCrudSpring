@@ -70,4 +70,32 @@ public class ProductEndpoint {
         response.setProduct(product);
         return response;
     }
+
+    // Método que maneja las solicitudes de 'updateProductRequest'
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateProductRequest")
+    @ResponsePayload
+    public UpdateProductResponse updateProduct(@RequestPayload UpdateProductRequest request) {
+        // Crea una respuesta para la solicitud de actualización de producto
+        UpdateProductResponse response = new UpdateProductResponse();
+        // Convierte el producto de la solicitud a un modelo de producto
+        ProductModel productModel = productConverter.convertProductToProductModel(request.getProduct());
+        // Guarda el modelo de producto actualizado en el repositorio y convierte el modelo guardado a producto
+        Product updatedProduct = productConverter.convertProductModelToProduct(productRepository.save(productModel));
+        // Establece el producto actualizado en la respuesta
+        response.setProduct(updatedProduct);
+        return response;
+    }
+
+    // Método que maneja las solicitudes de 'deleteProductRequest'
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProductRequest")
+    @ResponsePayload
+    public DeleteProductResponse deleteProduct(@RequestPayload DeleteProductRequest request) {
+        // Crea una respuesta para la solicitud de eliminación de producto
+        DeleteProductResponse response = new DeleteProductResponse();
+        // Elimina el producto del repositorio
+        productRepository.deleteById(request.getId());
+        // Establece el mensaje de confirmación en la respuesta
+        response.setStatus("Product deleted successfully");
+        return response;
+    }
 }

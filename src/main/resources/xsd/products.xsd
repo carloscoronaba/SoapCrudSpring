@@ -4,8 +4,6 @@
            targetNamespace="http://www.example.com/demosoap/gen"
            elementFormDefault="qualified">
 
-    <!-- Definición del esquema XML con el espacio de nombres y configuración predeterminada -->
-
     <!-- Solicitud para obtener todos los productos -->
     <xs:element name="getProductsRequest">
         <xs:complexType>
@@ -61,6 +59,46 @@
             <xs:sequence>
                 <!-- Producto guardado -->
                 <xs:element name="product" type="tns:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Solicitud para actualizar un producto -->
+    <xs:element name="updateProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Producto a actualizar -->
+                <xs:element name="product" type="tns:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Respuesta para la solicitud de actualizar un producto -->
+    <xs:element name="updateProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Producto actualizado -->
+                <xs:element name="product" type="tns:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Solicitud para eliminar un producto -->
+    <xs:element name="deleteProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Identificador del producto a eliminar -->
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Respuesta para la solicitud de eliminar un producto -->
+    <xs:element name="deleteProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Confirmación de eliminación (puede ser un mensaje o un booleano) -->
+                <xs:element name="status" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
