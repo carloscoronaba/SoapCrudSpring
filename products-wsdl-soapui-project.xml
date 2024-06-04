@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="29c9d320-5c62-486e-bb9d-a709e8ac27f1" activeEnvironment="Default" name="products.wsdl" resourceRoot="" soapui-version="5.7.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="95f7b50b-5c1e-4289-975a-21ac3c4624b3" wsaVersion="NONE" name="ProductPortSoap11" type="wsdl" bindingName="{http://www.example.com/demosoap/gen}ProductPortSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/carlos.corona/OneDrive%20-%20NEORIS/Desktop/ServiciosSoap/products.wsdl.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\carlos.corona\OneDrive%20-%20NEORIS\Desktop\ServiciosSoap\products.wsdl.xml"><con:part><con:url>file:\C:\Users\carlos.corona\OneDrive%20-%20NEORIS\Desktop\ServiciosSoap\products.wsdl.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.example.com/demosoap/gen" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.example.com/demosoap/gen" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.com/demosoap/gen">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.example.com/demosoap/gen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <!--Solicitud para obtener todos los productos-->
+      <xs:element name="getProductsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Secuencia vacía, no se requiere ningún parámetro-->
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Respuesta para obtener todos los productos-->
+      <xs:element name="getProductsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Lista de productos, puede tener múltiples elementos-->
+            <xs:element maxOccurs="unbounded" name="products" type="tns:product"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Solicitud para obtener un producto por su nombre-->
+      <xs:element name="getProductRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Nombre del producto a buscar-->
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Respuesta para obtener un producto por su nombre-->
+      <xs:element name="getProductResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Producto encontrado-->
+            <xs:element name="product" type="tns:product"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Solicitud para guardar un producto-->
+      <xs:element name="postProductRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Producto a guardar-->
+            <xs:element name="product" type="tns:product"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Respuesta para la solicitud de guardar un producto-->
+      <xs:element name="postProductResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Producto guardado-->
+            <xs:element name="product" type="tns:product"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Solicitud para actualizar un producto-->
+      <xs:element name="updateProductRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Producto a actualizar-->
+            <xs:element name="product" type="tns:product"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Respuesta para la solicitud de actualizar un producto-->
+      <xs:element name="updateProductResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Producto actualizado-->
+            <xs:element name="product" type="tns:product"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Solicitud para eliminar un producto-->
+      <xs:element name="deleteProductRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Identificador del producto a eliminar-->
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Respuesta para la solicitud de eliminar un producto-->
+      <xs:element name="deleteProductResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <!--Confirmación de eliminación (puede ser un mensaje o un booleano)-->
+            <xs:element name="status" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Definición del tipo complejo 'product'-->
+      <xs:complexType name="product">
+        <xs:sequence>
+          <!--Identificador del producto-->
+          <xs:element name="id" type="xs:int"/>
+          <!--Nombre del producto-->
+          <xs:element name="name" type="xs:string"/>
+          <!--Precio del producto-->
+          <xs:element name="price" type="xs:double"/>
+          <!--Descripción del producto-->
+          <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProductRequest">
+    <wsdl:part element="tns:getProductRequest" name="getProductRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductsResponse">
+    <wsdl:part element="tns:getProductsResponse" name="getProductsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="postProductRequest">
+    <wsdl:part element="tns:postProductRequest" name="postProductRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateProductRequest">
+    <wsdl:part element="tns:updateProductRequest" name="updateProductRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateProductResponse">
+    <wsdl:part element="tns:updateProductResponse" name="updateProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProductRequest">
+    <wsdl:part element="tns:deleteProductRequest" name="deleteProductRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="postProductResponse">
+    <wsdl:part element="tns:postProductResponse" name="postProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductResponse">
+    <wsdl:part element="tns:getProductResponse" name="getProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProductResponse">
+    <wsdl:part element="tns:deleteProductResponse" name="deleteProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductsRequest">
+    <wsdl:part element="tns:getProductsRequest" name="getProductsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProductPort">
+    <wsdl:operation name="getProduct">
+      <wsdl:input message="tns:getProductRequest" name="getProductRequest"></wsdl:input>
+      <wsdl:output message="tns:getProductResponse" name="getProductResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProducts">
+      <wsdl:input message="tns:getProductsRequest" name="getProductsRequest"></wsdl:input>
+      <wsdl:output message="tns:getProductsResponse" name="getProductsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postProduct">
+      <wsdl:input message="tns:postProductRequest" name="postProductRequest"></wsdl:input>
+      <wsdl:output message="tns:postProductResponse" name="postProductResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProduct">
+      <wsdl:input message="tns:updateProductRequest" name="updateProductRequest"></wsdl:input>
+      <wsdl:output message="tns:updateProductResponse" name="updateProductResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProduct">
+      <wsdl:input message="tns:deleteProductRequest" name="deleteProductRequest"></wsdl:input>
+      <wsdl:output message="tns:deleteProductResponse" name="deleteProductResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductPortSoap11" type="tns:ProductPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getProduct">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getProductRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProductResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProducts">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getProductsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProductsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postProduct">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="postProductRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="postProductResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProduct">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="updateProductRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateProductResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProduct">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="deleteProductRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteProductResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductPortService">
+    <wsdl:port binding="tns:ProductPortSoap11" name="ProductPortSoap11">
+      <soap:address location="http://localhost:8090/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8090/ws</con:endpoint></con:endpoints><con:operation id="f95bc4aa-0ebb-4972-be11-9c0c31275bb6" isOneWay="false" action="" name="deleteProduct" bindingOperationName="deleteProduct" type="Request-Response" outputName="deleteProductResponse" inputName="deleteProductRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="249cfed3-1ff8-4d90-b2d1-f448e3268f9a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.example.com/demosoap/gen">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:deleteProductRequest>\r
+         <gen:id>2</gen:id>\r
+      </gen:deleteProductRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.com/demosoap/gen/ProductPort/deleteProductRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="db13aff5-00d7-435f-a436-c1c03d93e903" isOneWay="false" action="" name="getProduct" bindingOperationName="getProduct" type="Request-Response" outputName="getProductResponse" inputName="getProductRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3b2fe633-5819-4801-b632-bdb9e0de34d3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.example.com/demosoap/gen">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:getProductRequest>\r
+         <gen:name>Aguaa</gen:name>\r
+      </gen:getProductRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.com/demosoap/gen/ProductPort/getProductRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="fac36859-8eb2-4a5e-9149-571f0f6dbfeb" isOneWay="false" action="" name="getProducts" bindingOperationName="getProducts" type="Request-Response" outputName="getProductsResponse" inputName="getProductsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b33b2dd0-331d-420e-a5d8-7babde3a36c4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.example.com/demosoap/gen">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:getProductsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.com/demosoap/gen/ProductPort/getProductsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="2a68f105-a89b-4b2d-b5da-563b30cd7cc7" isOneWay="false" action="" name="postProduct" bindingOperationName="postProduct" type="Request-Response" outputName="postProductResponse" inputName="postProductRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="391039c2-63f6-405d-b1bb-a926f0b87fd5" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.example.com/demosoap/gen">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:postProductRequest>\r
+         <gen:product>\r
+            <gen:id></gen:id>\r
+            <gen:name>ejemplo</gen:name>\r
+            <gen:price>5.5</gen:price>\r
+            <gen:description>barato</gen:description>\r
+         </gen:product>\r
+      </gen:postProductRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.com/demosoap/gen/ProductPort/postProductRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8a6eef26-65bc-4b16-8071-9bc59765f988" isOneWay="false" action="" name="updateProduct" bindingOperationName="updateProduct" type="Request-Response" outputName="updateProductResponse" inputName="updateProductRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3978292a-2fac-48a4-b6ee-09f25ef364be" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.example.com/demosoap/gen">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:updateProductRequest>\r
+         <gen:product>\r
+            <gen:id>953</gen:id>\r
+            <gen:name>tierra</gen:name>\r
+            <gen:price>50.60</gen:price>\r
+            <gen:description>tierrita mojada</gen:description>\r
+         </gen:product>\r
+      </gen:updateProductRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.com/demosoap/gen/ProductPort/updateProductRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
