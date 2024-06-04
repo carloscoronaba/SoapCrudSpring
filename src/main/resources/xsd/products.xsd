@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.example.com/demosoap/gen"
+           targetNamespace="http://www.example.com/demosoap/gen"
+           elementFormDefault="qualified">
+
+    <!-- Definición del esquema XML con el espacio de nombres y configuración predeterminada -->
+
+    <!-- Solicitud para obtener todos los productos -->
+    <xs:element name="getProductsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Secuencia vacía, no se requiere ningún parámetro -->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Respuesta para obtener todos los productos -->
+    <xs:element name="getProductsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Lista de productos, puede tener múltiples elementos -->
+                <xs:element name="products" type="tns:product" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Solicitud para obtener un producto por su nombre -->
+    <xs:element name="getProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Nombre del producto a buscar -->
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Respuesta para obtener un producto por su nombre -->
+    <xs:element name="getProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Producto encontrado -->
+                <xs:element name="product" type="tns:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Solicitud para guardar un producto -->
+    <xs:element name="postProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Producto a guardar -->
+                <xs:element name="product" type="tns:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Respuesta para la solicitud de guardar un producto -->
+    <xs:element name="postProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Producto guardado -->
+                <xs:element name="product" type="tns:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Definición del tipo complejo 'product' -->
+    <xs:complexType name="product">
+        <xs:sequence>
+            <!-- Identificador del producto -->
+            <xs:element name="id" type="xs:int"/>
+            <!-- Nombre del producto -->
+            <xs:element name="name" type="xs:string"/>
+            <!-- Precio del producto -->
+            <xs:element name="price" type="xs:double"/>
+            <!-- Descripción del producto -->
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

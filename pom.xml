@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Define el esquema del proyecto como Maven POM (Project Object Model) -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Versión del modelo de POM -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Información del proyecto padre (Spring Boot Starter Parent) -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.6</version>
+        <relativePath/> <!-- busca el padre en el repositorio -->
+    </parent>
+
+    <!-- Información del proyecto actual -->
+    <groupId>com.example</groupId>
+    <artifactId>servicios_soap_spring</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging> <!-- Define el tipo de paquete como WAR -->
+    <name>demosoap</name>
+    <description>Demo Soap Service project for Spring Boot</description>
+
+    <!-- Propiedades del proyecto -->
+    <properties>
+        <java.version>17</java.version> <!-- Especifica la versión de Java -->
+    </properties>
+
+    <!-- Dependencias del proyecto -->
+    <dependencies>
+        <!-- Spring Boot Starter Web para aplicaciones web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Starter Web Services para servicios web SOAP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+
+        <!-- Spring Boot DevTools para el desarrollo rápido -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Boot Starter Data JPA para la persistencia de datos -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>3.2.4</version> <!-- Nota: Especificar la versión directamente en la dependencia -->
+        </dependency>
+
+        <!-- Base de datos H2 para pruebas y desarrollo -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Lombok para reducir el boilerplate de código -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- WSDL4J para la generación de clases a partir de WSDL -->
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+        </dependency>
+
+        <!-- Controlador JDBC de Oracle -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>23.2.0.0</version>
+        </dependency>
+
+        <!-- Spring Boot Starter Test para pruebas -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Configuración de compilación -->
+    <build>
+        <plugins>
+            <!-- Plugin de Maven para Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin JAXB para generar clases Java a partir de esquemas XSD -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>
+                        <source>src/main/resources/xsd/products.xsd</source>
+                    </sources>
+                    <packageName>com.example.demosoap.gen</packageName> <!-- Paquete para las clases generadas -->
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>4.0.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.activation</groupId>
+                        <artifactId>jakarta.activation</artifactId>
+                        <version>1.2.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- Plugin Liberty para la integración con Open Liberty -->
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>3.10.3</version>
+                <configuration>
+                    <runtimeArtifact>
+                        <groupId>com.ibm.websphere.appserver.runtime</groupId>
+                        <artifactId>wlp-kernel</artifactId>
+                        <version>24.0.0.5</version>
+                        <type>zip</type>
+                    </runtimeArtifact>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
